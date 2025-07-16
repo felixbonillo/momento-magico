@@ -14,3 +14,21 @@ const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
 const db = getFirestore(app)
+
+function App() {
+  const [userId, setUserId] = useState(null); //Estado para almacenar el ID del usuario
+  const [loadingAuth, setLoadingAuth] = useState(true) //Estado para saber si la autenticacion esta cargando
+
+  useEffect(() =>{
+    //Es un listener que se activa cada vez que el estado de la autenticacion del usuario cambia
+    //Ej Inicia sesion, cierra sesion o autentica por primera vez
+    //Es el lugar ideal para obtener el id del usuario y saber si esta autenticado
+
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        //Usuario autenticado
+        setUserId(user.uid)
+      }
+    })
+  })
+}
