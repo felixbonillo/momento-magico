@@ -1,20 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/*
-  Concepto: @tailwind directives
-  Estas tres líneas son fundamentales para que Tailwind CSS funcione.
-  Importan los estilos base de Tailwind (reset CSS), los componentes predefinidos
-  (como botones, formularios) y las clases de utilidad (flex, p-4, bg-blue-500, etc.).
-  Sin ellas, Tailwind no generará ningún CSS.
-*/
-
-/*
-  Concepto: Fuentes personalizadas
-  Aquí puedes importar fuentes como 'Inter' desde Google Fonts o tus propios archivos.
-  Para este proyecto, usaremos 'Inter' como se definió en tailwind.config.js.
-  Asegúrate de que la fuente esté disponible para el navegador.
-  Puedes añadirla en index.html si no la tienes ya:
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-*/
