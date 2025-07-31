@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'firebase/auth';
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 import { CalendarDays, Scale, MessageSquare, BookOpen, Heart, User } from 'lucide-react'; // Importa iconos de Lucide React
 
 // Importa tus componentes
@@ -20,6 +20,7 @@ import NavigationButton from './components/NavigationButton'; // ¡NUEVO! Import
   };
 
 const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
 // Inicializa Firebase fuera del componente para evitar re-inicializaciones
 const app = initializeApp(firebaseConfig);
@@ -30,6 +31,9 @@ function App() {
   const [userId, setUserId] = useState(null); // Estado para almacenar el ID del usuario
   const [loadingAuth, setLoadingAuth] = useState(true); // Estado para saber si la autenticación está cargando
 
+
+
+  //Para manejar la autenticacion de firebase
   useEffect(() => {
     // Concepto: onAuthStateChanged
     // Esta función es un listener que se activa cada vez que el estado de autenticación del usuario cambia
@@ -107,7 +111,7 @@ function App() {
 
         {/* Renderiza el componente PregnancyTracker si el usuario está autenticado */}
         {userId ? (
-          <PregnancyTracker userId={userId} db={db} />
+          <PregnancyTracker userId={userId} db={db} appId={appId}/>
         ) : (
           <div className="text-center text-lg text-red-300">
             No se pudo autenticar al usuario. Por favor, recarga la página.
